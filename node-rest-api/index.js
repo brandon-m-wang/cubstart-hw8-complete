@@ -12,9 +12,13 @@ const path = require("path");
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, () => {
-  console.log("MongoDB connected!");
-});
+mongoose.connect(
+  process.env.MONGO_URL,
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
+  () => {
+    console.log("MongoDB connected!");
+  }
+);
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
